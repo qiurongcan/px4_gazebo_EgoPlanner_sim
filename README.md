@@ -1,0 +1,2 @@
+# px4_gazebo_EgoPlanner_sim
+egoplanner在gazebo环境下，使用px4无人机和fastlio定位进行仿真，且便于一比一还原至实机部署
