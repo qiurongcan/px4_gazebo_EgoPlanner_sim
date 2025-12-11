@@ -33,6 +33,7 @@ void AStar::initGridMap(GridMap::Ptr occ_map, const Eigen::Vector3i pool_size)
     grid_map_ = occ_map;
 }
 
+// 可以在3个启发函数中增加z轴的乘法系数
 double AStar::getDiagHeu(GridNodePtr node1, GridNodePtr node2)
 {
     double dx = abs(node1->index(0) - node2->index(0));
@@ -212,6 +213,12 @@ bool AStar::AstarSearch(const double step_size, Vector3d start_pt, Vector3d end_
                     {
                         continue;
                     }
+                    // ----------------------------------------------
+                    // 修改后: 引入 Z 轴惩罚权重
+                    // double z_penalty_weight = 10.0; // 权重越大，越不愿意在 Z 轴移动
+                    // // 如果 dz 不为 0，则将 Z 方向的分量放大
+                    // double static_cost = sqrt(dx * dx + dy * dy + (dz * z_penalty_weight) * (dz * z_penalty_weight));
+                    // -----------------------------------------------
 
                     double static_cost = sqrt(dx * dx + dy * dy + dz * dz);
                     tentative_gScore = current->gScore + static_cost;

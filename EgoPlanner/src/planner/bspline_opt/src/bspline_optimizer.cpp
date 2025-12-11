@@ -946,6 +946,7 @@ namespace ego_planner
       {
         /* evaluate jerk */
         jerk = q.col(i + 3) - 3 * q.col(i + 2) + 3 * q.col(i + 1) - q.col(i);
+        // 此处可在Z轴增加一个惩罚项，达到优先考虑xy平面的目的
         cost += jerk.squaredNorm();
         temp_j = 2.0 * jerk;
         /* jerk gradient */

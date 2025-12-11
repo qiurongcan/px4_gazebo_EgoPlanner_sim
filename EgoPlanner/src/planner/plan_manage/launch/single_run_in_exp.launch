@@ -19,11 +19,13 @@
         <!-- camera pose: transform of camera frame in the world frame -->
         <!-- depth topic: depth image, 640x480 by default -->
         <!-- don't set cloud_topic if you already set these ones! -->
+        <!-- 使用雷达点云的话，这两个话题未使用到 -->
         <arg name="camera_pose_topic" value="nouse1"/>
-        <arg name="depth_topic" value="/camera/depth/image_rect_raw"/>
+        <arg name="depth_topic" value="nouse2"/>
         <!-- topic of point cloud measurement, such as from LIDAR  -->
         <!-- don't set camera pose and depth, if you already set this one! -->
-        <arg name="cloud_topic" value="nouse2"/>
+        <!-- 使用激光雷达经过FASTLIO处理后的点云 -->
+        <arg name="cloud_topic" value="/cloud_registered"/>
         <!-- intrinsic params of the depth camera -->
         <arg name="cx" value="323.3316345214844"/>
         <arg name="cy" value="234.95498657226562"/>
@@ -33,7 +35,8 @@
         <arg name="max_vel" value="0.5" />
         <arg name="max_acc" value="6.0" />
         <!--always set to 1.5 times grater than sensing horizen-->
-        <arg name="planning_horizon" value="6" />
+        <arg name="planning_horizon" value="15" />
+        <!-- 是否使用多拓扑路径搜索 -->
         <arg name="use_distinctive_trajs" value="false" />
         <!-- 1: use 2D Nav Goal to select goal  -->
         <!-- 2: use global waypoints below  -->
